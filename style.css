@@ -47,7 +47,8 @@ body {
     text-align: center;
   }
   
-  .button {
+  button {
+    all: unset;
     height: 40px;
     line-height: 40px;
     width: 40px;
