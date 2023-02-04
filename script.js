@@ -1,3 +1,5 @@
+// Basic calculation functions
+
 const add = function (a, b) {
     return a + b;
 };
@@ -32,3 +34,28 @@ function operate(op, a, b) {
             break;
     }
 };
+
+let newNum = true;
+let operand = 0;
+
+const display = document.querySelector("#calc-display");
+
+function updateDisplay(value) {
+    if (newNum) {
+        operand = value;
+        newNum = false;
+    }
+    else {
+        operand += value;
+    }
+    display.innerHTML = operand;
+}
+
+const numberButtons = document.querySelectorAll('.num-button')
+
+numberButtons.forEach(function (currentBtn) {
+    currentBtn.addEventListener('click', function () {
+        updateDisplay(currentBtn.id);
+        console.log(operand);
+    });
+})
