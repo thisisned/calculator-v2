@@ -47,12 +47,22 @@ const numberButtons = document.querySelectorAll('.num-button')
 const operatorButtons = document.querySelectorAll('.op-button')
 const display = document.querySelector("#calc-display");
 const equalButton = document.querySelector('#eq');
+const acButton = document.querySelector('#AC');
+
+function reset() {
+    updateDisplay(0);
+    newNum = true;
+    operandOne = 0;
+    operandTwo = 0;
+    displayValue = 0;
+    operator = "";
+}
 
 function updateDisplay(value) {
     if (newNum) {
         displayValue = value;
         newNum = false;
-        operatorButtons.forEach((button) => { button.classList.remove('op-active') });
+        operatorButtons.forEach(button => { button.classList.remove('op-active') });
     }
     else {
         displayValue += value;
@@ -79,6 +89,10 @@ equalButton.addEventListener('click', function () {
     operandTwo = parseInt(display.innerHTML);
     let answer = operate(operator, operandOne, operandTwo);
     display.innerHTML = answer;
-    operatorButtons.forEach((button) => { button.classList.remove('op-active') });
+    operatorButtons.forEach(button => { button.classList.remove('op-active') });
     newNum = true;
+})
+
+acButton.addEventListener('click', function () {
+    reset();
 })
