@@ -36,19 +36,22 @@ function operate(op, a, b) {
 };
 
 let newNum = true;
-let operand = 0;
+let operandOne = 0;
+let operandTwo = 0;
+let displayValue = 0;
+let operator = "";
 
 const display = document.querySelector("#calc-display");
 
 function updateDisplay(value) {
     if (newNum) {
-        operand = value;
+        displayValue = value;
         newNum = false;
     }
     else {
-        operand += value;
+        displayValue += value;
     }
-    display.innerHTML = operand;
+    display.innerHTML = displayValue;
 }
 
 const numberButtons = document.querySelectorAll('.num-button')
@@ -56,6 +59,25 @@ const numberButtons = document.querySelectorAll('.num-button')
 numberButtons.forEach(function (currentBtn) {
     currentBtn.addEventListener('click', function () {
         updateDisplay(currentBtn.id);
-        console.log(operand);
     });
+})
+
+const operatorButtons = document.querySelectorAll('.op-button')
+
+operatorButtons.forEach(function (currentBtn) {
+    currentBtn.addEventListener('click', function () {
+        currentBtn.classList.toggle('op-active');
+        newNum = true;
+        operandOne = parseInt(display.innerHTML);
+        operator = currentBtn.id;
+    });
+})
+
+const equalButton = document.querySelector('#eq');
+
+equalButton.addEventListener('click', function () {
+    operandTwo = parseInt(display.innerHTML);
+    let answer = operate(operator, operandOne, operandTwo);
+    display.innerHTML = answer;
+    operatorButtons.forEach((button) => { button.classList.remove('op-active') });
 })
