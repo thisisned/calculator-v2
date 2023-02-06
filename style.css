@@ -23,19 +23,16 @@ body {
   }
   
   #calc-display {
-    display: flex;
-    align-items: center;
-    justify-content: right;
     background-color: #c3c2ab;
     border-radius: 5px;
     height: 60px;
-    line-height: 40px;
+    line-height: 60px;
     margin: 15px;
     padding: 0 5px;
     text-align: right;
-    font-size: 2em;
-    /* overflow-x: auto;
-    overflow-y: hidden; */
+    font-size: 1.8em;
+    overflow-x: auto;
+    overflow-y: hidden;
   }
   
   .row {

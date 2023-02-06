@@ -34,7 +34,7 @@ function operate(op, a, b) {
         default:
             break;
     }
-    return Number((ans).toFixed(9));
+    return Number((ans).toFixed(10));
 };
 
 let newNum = true;
@@ -93,7 +93,7 @@ operatorButtons.forEach(function (currentBtn) {
 
 equalButton.addEventListener('click', function () {
     operandTwo = parseFloat(display.innerHTML);
-    let answer = operate(operator, operandOne, operandTwo);
+    let answer = operandOne || operandOne === 0 ? operate(operator, operandOne, operandTwo) : operandTwo;
     display.innerHTML = answer;
     reset();
 })
