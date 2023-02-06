@@ -34,28 +34,28 @@ function operate(op, a, b) {
         default:
             break;
     }
-    return Number((ans).toFixed(12));
+    return Number((ans).toFixed(9));
 };
 
 let newNum = true;
-let operandOne = 0;
-let operandTwo = 0;
+let operandOne = false;
+let operandTwo = false;
 let displayValue = 0;
-let operator = "";
+let operator = false;
 
 const numberButtons = document.querySelectorAll('.num-button')
 const operatorButtons = document.querySelectorAll('.op-button')
 const display = document.querySelector("#calc-display");
 const equalButton = document.querySelector('#eq');
 const acButton = document.querySelector('#AC');
+const cButton = document.querySelector('#C');
 
 function reset() {
-    updateDisplay(0);
     newNum = true;
-    operandOne = 0;
-    operandTwo = 0;
-    displayValue = 0;
-    operator = "";
+    operandOne = false;
+    operandTwo = false;
+    operator = false;
+    operatorButtons.forEach(button => { button.classList.remove('op-active') });
 }
 
 function updateDisplay(value) {
@@ -78,21 +78,32 @@ numberButtons.forEach(function (currentBtn) {
 
 operatorButtons.forEach(function (currentBtn) {
     currentBtn.addEventListener('click', function () {
-        currentBtn.classList.toggle('op-active');
+        if (operator) {
+            operandTwo = parseFloat(display.innerHTML);
+            let answer = operate(operator, operandOne, operandTwo);
+            display.innerHTML = answer;
+            operandOne = answer;
+        }
+        currentBtn.classList.add('op-active');
         newNum = true;
-        operandOne = parseInt(display.innerHTML);
+        operandOne = parseFloat(display.innerHTML);
         operator = currentBtn.id;
     });
 })
 
 equalButton.addEventListener('click', function () {
-    operandTwo = parseInt(display.innerHTML);
+    operandTwo = parseFloat(display.innerHTML);
     let answer = operate(operator, operandOne, operandTwo);
     display.innerHTML = answer;
-    operatorButtons.forEach(button => { button.classList.remove('op-active') });
-    newNum = true;
+    reset();
 })
 
 acButton.addEventListener('click', function () {
+    display.innerHTML = 0;
     reset();
+})
+
+cButton.addEventListener('click', function () {
+    display.innerHTML = 0;
+    newNum = true;
 })
