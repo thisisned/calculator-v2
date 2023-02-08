@@ -39,7 +39,7 @@ function operate(op, a, b) {
 
 let newNum = true;
 let operandOne = false;
-let displayValue = 0;
+let displayValue = "0";
 let operator = false;
 let operatorTime = true;
 let decimal = false;
@@ -59,18 +59,19 @@ function reset() {
     operator = false;
     operatorTime = true;
     decimal = false;
+    displayValue = "0";
     operatorButtons.forEach(button => { button.classList.remove('op-active') });
 }
 
 function updateDisplay(value) {
     if (newNum) {
-        displayValue = value;
+        displayValue = value.toString();
         newNum = false;
         operatorButtons.forEach(button => { button.classList.remove('op-active') });
     }
     else {
-        if (display.innerHTML.length < 13 && displayValue != 0) {
-            displayValue += value;
+        if (display.innerHTML.length < 13 && displayValue != "0") {
+            displayValue += value.toString();
         }
     }
     display.innerHTML = displayValue;
@@ -97,6 +98,7 @@ operatorButtons.forEach(function (currentBtn) {
             operandOne = parseFloat(display.innerHTML);
             operator = currentBtn.id;
             operatorTime = false;
+            decimal = false;
         };
     });
 })
@@ -122,4 +124,10 @@ cButton.addEventListener('click', function () {
 })
 
 decButton.addEventListener('click', function () {
+    if (!decimal) {
+        displayValue += ".";
+        display.innerHTML = displayValue;
+        newNum = false;
+        decimal = true;
+    };
 })
