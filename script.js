@@ -34,7 +34,7 @@ function operate(op, a, b) {
         default:
             break;
     }
-    return Number((ans).toFixed(10));
+    return Number((Math.round((ans + Number.EPSILON) * 100000) / 100000).toFixed(10));
 };
 
 let newNum = true;
@@ -90,6 +90,9 @@ operatorButtons.forEach(function (currentBtn) {
             if (operator) {
                 operandTwo = parseFloat(display.innerHTML);
                 let answer = operate(operator, operandOne, operandTwo);
+                if (answer.toString().length > 13) {
+                    answer = answer.toExponential(7);
+                };
                 display.innerHTML = answer;
                 operandOne = answer;
             }

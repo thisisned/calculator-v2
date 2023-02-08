@@ -1,72 +1,73 @@
 body {
-    font-family: 'Roboto Mono', monospace;
-    font-weight: 700;
-    background-color: #7bb3a0;
-  }
-  
-  div {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;   
-    -ms-user-select: none;    
-    -o-user-select: none;
-    user-select: none;
-  }
-  
-  #calc-body {
-    border-radius: 15px;
-    margin: 40px auto;
-    padding: 10px;
-    height: 400px;
-    width: 280px;
-    background-color: #666;
-  }
-  
-  #calc-display {
-    background-color: #c3c2ab;
-    border-radius: 5px;
-    height: 60px;
-    line-height: 60px;
-    margin: 15px;
-    padding: 0 5px;
-    text-align: right;
-    font-size: 1.8em;
-    overflow-x: auto;
-    overflow-y: hidden;
-  }
-  
-  .row {
-    text-align: center;
-  }
-  
-  button {
-    all: unset;
-    height: 40px;
-    line-height: 40px;
-    width: 40px;
-    display: inline-block;
-    vertical-align: top;
-    margin: 10px;
-    border: 1px solid rgb(136, 136, 136);
-    border-radius: 15px;
-    cursor: pointer;
-    background-color: #999;
-  }
-  
-  #AC, #C {
-    background-color: #bc2f2f;
-    color: white;
-  }
-  
-  .dummy {
-    visibility: hidden;
-  }
-  
-  .op-button {
-    background-color: #898bff;
-  }
-  
-  .op-active {
-    background-color: #3236ff;
-    color: white;
-  }
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 700;
+  background-color: #7bb3a0;
+}
+
+div {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+#calc-body {
+  border-radius: 15px;
+  margin: 40px auto;
+  padding: 10px;
+  height: 400px;
+  width: 280px;
+  background-color: #666;
+}
+
+#calc-display {
+  background-color: #c3c2ab;
+  border-radius: 5px;
+  height: 60px;
+  line-height: 60px;
+  margin: 15px;
+  padding: 0 5px;
+  text-align: right;
+  font-size: 1.8em;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.row {
+  text-align: center;
+}
+
+button {
+  all: unset;
+  height: 40px;
+  line-height: 40px;
+  width: 40px;
+  display: inline-block;
+  vertical-align: top;
+  margin: 10px;
+  border: 1px solid rgb(136, 136, 136);
+  border-radius: 15px;
+  cursor: pointer;
+  background-color: #999;
+}
+
+#AC,
+#C {
+  background-color: #bc2f2f;
+  color: white;
+}
+
+.dummy {
+  visibility: hidden;
+}
+
+.op-button {
+  background-color: #898bff;
+}
+
+.op-active {
+  background-color: #3236ff;
+  color: white;
+}
