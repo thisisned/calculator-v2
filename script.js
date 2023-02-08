@@ -39,10 +39,10 @@ function operate(op, a, b) {
 
 let newNum = true;
 let operandOne = false;
-let operandTwo = false;
 let displayValue = 0;
 let operator = false;
 let operatorTime = true;
+let decimal = false;
 
 const numberButtons = document.querySelectorAll('.num-button')
 const operatorButtons = document.querySelectorAll('.op-button')
@@ -50,6 +50,7 @@ const display = document.querySelector("#calc-display");
 const equalButton = document.querySelector('#eq');
 const acButton = document.querySelector('#AC');
 const cButton = document.querySelector('#C');
+const decButton = document.querySelector('#dec');
 
 function reset() {
     newNum = true;
@@ -57,6 +58,7 @@ function reset() {
     operandTwo = false;
     operator = false;
     operatorTime = true;
+    decimal = false;
     operatorButtons.forEach(button => { button.classList.remove('op-active') });
 }
 
@@ -67,7 +69,7 @@ function updateDisplay(value) {
         operatorButtons.forEach(button => { button.classList.remove('op-active') });
     }
     else {
-        if (display.innerHTML.length < 13) {
+        if (display.innerHTML.length < 13 && displayValue != 0) {
             displayValue += value;
         }
     }
@@ -119,4 +121,5 @@ cButton.addEventListener('click', function () {
     newNum = true;
 })
 
-window.onload = reset();
+decButton.addEventListener('click', function () {
+})
