@@ -42,6 +42,7 @@ let operandOne = false;
 let operandTwo = false;
 let displayValue = 0;
 let operator = false;
+let operatorTime = true;
 
 const numberButtons = document.querySelectorAll('.num-button')
 const operatorButtons = document.querySelectorAll('.op-button')
@@ -55,6 +56,7 @@ function reset() {
     operandOne = false;
     operandTwo = false;
     operator = false;
+    operatorTime = true;
     operatorButtons.forEach(button => { button.classList.remove('op-active') });
 }
 
@@ -65,7 +67,9 @@ function updateDisplay(value) {
         operatorButtons.forEach(button => { button.classList.remove('op-active') });
     }
     else {
-        displayValue += value;
+        if (display.innerHTML.length < 13) {
+            displayValue += value;
+        }
     }
     display.innerHTML = displayValue;
 }
@@ -73,27 +77,34 @@ function updateDisplay(value) {
 numberButtons.forEach(function (currentBtn) {
     currentBtn.addEventListener('click', function () {
         updateDisplay(currentBtn.id);
+        operatorTime = true;
     });
 })
 
 operatorButtons.forEach(function (currentBtn) {
     currentBtn.addEventListener('click', function () {
-        if (operator) {
-            operandTwo = parseFloat(display.innerHTML);
-            let answer = operate(operator, operandOne, operandTwo);
-            display.innerHTML = answer;
-            operandOne = answer;
-        }
-        currentBtn.classList.add('op-active');
-        newNum = true;
-        operandOne = parseFloat(display.innerHTML);
-        operator = currentBtn.id;
+        if (operatorTime) {
+            if (operator) {
+                operandTwo = parseFloat(display.innerHTML);
+                let answer = operate(operator, operandOne, operandTwo);
+                display.innerHTML = answer;
+                operandOne = answer;
+            }
+            currentBtn.classList.add('op-active');
+            newNum = true;
+            operandOne = parseFloat(display.innerHTML);
+            operator = currentBtn.id;
+            operatorTime = false;
+        };
     });
 })
 
 equalButton.addEventListener('click', function () {
     operandTwo = parseFloat(display.innerHTML);
     let answer = operandOne || operandOne === 0 ? operate(operator, operandOne, operandTwo) : operandTwo;
+    if (answer.toString().length > 13) {
+        answer = answer.toExponential(7);
+    };
     display.innerHTML = answer;
     reset();
 })
@@ -107,3 +118,5 @@ cButton.addEventListener('click', function () {
     display.innerHTML = 0;
     newNum = true;
 })
+
+window.onload = reset();
