@@ -39,6 +39,7 @@ function operate(op, a, b) {
 
 let newNum = true;
 let operandOne = false;
+let operandTwo = false;
 let displayValue = "0";
 let operator = false;
 let operatorTime = true;
