@@ -129,6 +129,7 @@ cButton.addEventListener('click', function () {
 
 decButton.addEventListener('click', function () {
     if (!decimal) {
+        if (newNum) displayValue = "0";
         displayValue += ".";
         display.innerHTML = displayValue;
         newNum = false;
